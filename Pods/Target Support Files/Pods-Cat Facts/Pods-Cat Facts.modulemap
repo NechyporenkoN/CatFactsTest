@@ -1,0 +1,6 @@
+framework module Pods_Cat_Facts {
+  umbrella header "Pods-Cat Facts-umbrella.h"
+
+  export *
+  module * { export * }
+}
