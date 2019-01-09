@@ -32,4 +32,4 @@ class UserRegistrationData: Object {
     @objc dynamic var userPassword = ""
 }
 
-var arrData = [Response]()
+

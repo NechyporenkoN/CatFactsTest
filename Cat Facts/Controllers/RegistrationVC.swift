@@ -9,6 +9,8 @@
 import UIKit
 import RealmSwift
 
+var arrData = [Response]()
+
 class RegistrationVC: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -25,7 +27,6 @@ class RegistrationVC: UIViewController {
     }
     
     func alertController(title: String, message: String) {
-        
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertOkAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertController.addAction(alertOkAction)
@@ -35,7 +36,6 @@ class RegistrationVC: UIViewController {
     func checkingForms(email: String, password: String, confirmPassword: String) -> Bool {
         var result  = false
         if isValidEmail(testStr: email) == true {
-            //            print("e-mail = true")
             if passwordCheck(passwordStr: password, confirmPasswordStr: confirmPassword) == true {
                 result = true
             } else {
@@ -76,7 +76,6 @@ class RegistrationVC: UIViewController {
         var result = true
         print("checkingUser in progres")
         for i in 0..<userData.count {
-            print("For In")
             let userOnce = userData[i]
             if userOnce.userEmail == email {
                 result = false
@@ -106,10 +105,10 @@ class RegistrationVC: UIViewController {
                 
             } else {
                 alertController(title: "User is already registered", message: "")
-                print("error----checkingUser")
+                print("error checkingUser")
             }
         } else {
-            print("error----checkingForms")
+            print("error checkingForms")
         }
     }
 }

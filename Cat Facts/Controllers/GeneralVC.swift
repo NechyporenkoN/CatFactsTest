@@ -68,7 +68,6 @@ class GeneralVC: UIViewController, UITableViewDataSource {
         cell.labelCell.text = arrData[indexPath.row].name
         cell.labelForText.text = arrData[indexPath.row].text
         cell.imageViewInCell.image = UIImage(named: "cat_footprint")
-        
         return cell
     }
     
