@@ -32,4 +32,7 @@ class UserRegistrationData: Object {
     @objc dynamic var userPassword = ""
 }
 
+class AuthorizationStatus: Object {
+    @objc dynamic var authorization = false
+}
 

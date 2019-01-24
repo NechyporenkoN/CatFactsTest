@@ -9,14 +9,21 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import RealmSwift
+
+var userStatus = true
 
 class GeneralVC: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
+    let realm = try! Realm()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        realmWriteAuthorizationStatus()
         
         request()
         
@@ -24,6 +31,14 @@ class GeneralVC: UIViewController, UITableViewDataSource {
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    func realmWriteAuthorizationStatus() {
+        let authorizationStatus = AuthorizationStatus()
+        authorizationStatus.authorization = userStatus
+        try! realm.write {
+            realm.add(authorizationStatus)
+            print("realmWriteAuthorizationStatus===\(authorizationStatus.authorization)")
+        }
+    }
     
     func request() {
         Alamofire.request("https://cat-fact.herokuapp.com/facts", method: .get, encoding: JSONEncoding.default, headers: nil)
@@ -71,4 +86,10 @@ class GeneralVC: UIViewController, UITableViewDataSource {
         return cell
     }
     
+    @IBAction func logOutButton(_ sender: Any) {
+        userStatus = false
+        realmWriteAuthorizationStatus()
+        let vc = storyboard?.instantiateViewController(withIdentifier: "AuthorizationVC")
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
 }

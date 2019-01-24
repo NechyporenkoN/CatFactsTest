@@ -11,6 +11,7 @@ import RealmSwift
 
 var arrData = [Response]()
 
+
 class RegistrationVC: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -19,11 +20,36 @@ class RegistrationVC: UIViewController {
     
     let realm = try! Realm() //access to storage
     var userData: Results<UserRegistrationData>!
+    var userStatusData: Results<AuthorizationStatus>!
+    
+    
+    override func loadView() {
+        super.loadView()
+        
+        userStatusData = realm.objects(AuthorizationStatus.self)
+        print(userStatusData.last?.authorization)
+        if checkAutorizationStatus() == true {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "GeneralVC")
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         userData = realm.objects(UserRegistrationData.self)
+        
+    }
+    
+    func checkAutorizationStatus() -> Bool {
+        var result = false
+        if userStatusData.last?.authorization == true {
+            result = true
+        } else {
+            result = false
+        }
+        return result
     }
     
     func alertController(title: String, message: String) {
@@ -93,6 +119,7 @@ class RegistrationVC: UIViewController {
         let password = passwordTextField.text!
         let confirmPassword = confirmPasswordTextField.text!
         if checkingForms(email: email, password: password, confirmPassword: confirmPassword) == true {
+            
             let user = UserRegistrationData()
             user.userEmail = email
             user.userPassword = password
@@ -100,9 +127,9 @@ class RegistrationVC: UIViewController {
                 try! realm.write {
                     realm.add(user)
                 }
+                userStatus = true
                 let vc = storyboard?.instantiateViewController(withIdentifier: "GeneralVC")
                 self.navigationController?.pushViewController(vc!, animated: true)
-                
             } else {
                 alertController(title: "User is already registered", message: "")
                 print("error checkingUser")

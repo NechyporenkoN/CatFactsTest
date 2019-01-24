@@ -23,10 +23,8 @@ class AuthorizationVC: UIViewController {
         userData = realm.objects(UserRegistrationData.self)
     }
     
-    
     func checkingUser(email: String, password: String) -> Bool {
         var result = false
-        
         for i in 0..<userData.count {
             let userOnce = userData[i]
             if userOnce.userEmail == email {
@@ -89,6 +87,7 @@ class AuthorizationVC: UIViewController {
         let password = passwordTextField.text!
         if checkingForms(email: email, password: password) == true {
             if checkingUser(email: email, password: password) == true {
+                userStatus = true
                 let vc = storyboard?.instantiateViewController(withIdentifier: "GeneralVC")
                 self.navigationController?.pushViewController(vc!, animated: true)
             } else {

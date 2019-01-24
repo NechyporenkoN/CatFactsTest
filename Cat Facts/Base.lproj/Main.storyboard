@@ -34,13 +34,13 @@
                                 <rect key="frame" x="32" y="161" width="311" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8kd-xT-LiO">
                                 <rect key="frame" x="32" y="199" width="311" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Snh-ZZ-jh3">
                                 <rect key="frame" x="32" y="261" width="311" height="30"/>
@@ -187,7 +187,7 @@
                     <navigationItem key="navigationItem" title="Cat Facts" id="O2a-Rf-FKH">
                         <barButtonItem key="rightBarButtonItem" title="Logout" style="plain" id="UtS-Ml-wfg">
                             <connections>
-                                <segue destination="8E6-oc-lwC" kind="showDetail" id="6Bo-eD-7Ef"/>
+                                <action selector="logOutButton:" destination="DL2-IM-kbz" id="TB6-Xx-Wsm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -202,7 +202,7 @@
         <!--AuthorizationVC-->
         <scene sceneID="RJ4-C5-p0Y">
             <objects>
-                <viewController id="5My-N4-ro8" customClass="AuthorizationVC" customModule="Cat_Facts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthorizationVC" id="5My-N4-ro8" customClass="AuthorizationVC" customModule="Cat_Facts" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K24-QF-8ea">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,7 +223,7 @@
                                 <rect key="frame" x="32" y="163" width="311" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trh-eM-tBb">
                                 <rect key="frame" x="32" y="225" width="311" height="30"/>
@@ -321,7 +321,4 @@
             <point key="canvasLocation" x="2333.5999999999999" y="-273.39901477832512"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="2cp-cu-Wzz"/>
-    </inferredMetricsTieBreakers>
 </document>
